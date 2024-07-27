@@ -1,0 +1,22 @@
+library(readxl)
+depresion <- read_excel("C:/Users/juan_/Downloads/depresion.xlsx")
+View(depresion)
+
+
+# install.packages("ggplot2")
+
+library(ggplot2)
+#Cuerpo
+ggplot(depresion, aes(x = Year, y = nr, fill = gruedad)) +
+  geom_bar(stat = "identity")+
+  guides(fill = guide_legend(title = "Grupos etarios"))+
+  scale_fill_discrete(labels = c("5 a 9 años", "10 a 14 años", "15 a 19 años", "20 a 39 años", "40 a 49 años", "50 a 59 años", "60 años y más"))+
+  labs(title = "Frecuencia absoluta de repetidos episodios depresivos por año de grupos etarios en Santa Cruz",
+       x = "Fuente: elaboración propia a partir de datos del Ministerio de Salud",
+       y = "valor",
+       subtitle = "Autor: Carlos JR Escobar V.")+
+  theme_minimal()+
+  scale_fill_manual(values = c("darkblue", "blue","skyblue","lightblue", "lavender", "violet", "purple"))+
+  scale_x_continuous(breaks = unique(depresion$Year))
+  
+  
